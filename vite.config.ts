@@ -5,7 +5,31 @@ import svgr from 'vite-plugin-svgr';
 import viteTsconfigPaths from 'vite-tsconfig-paths';
 
 export default defineConfig({
-  plugins: [react(), svgr(), eslint(), viteTsconfigPaths()],
+  plugins: [
+    react({
+      // to make sure that components have readable classnames after build
+      babel: {
+        presets: ['@babel/preset-typescript'],
+        plugins: [
+          '@babel/plugin-transform-typescript',
+          ['@babel/plugin-proposal-decorators', { version: 'legacy' }],
+          '@babel/plugin-proposal-class-properties',
+          [
+            'babel-plugin-styled-components',
+            {
+              ssr: false,
+              pure: true,
+              displayName: true,
+              fileName: true,
+            },
+          ],
+        ],
+      },
+    }),
+    svgr(),
+    eslint(),
+    viteTsconfigPaths(),
+  ],
   server: {
     host: '0.0.0.0',
     port: 3000,
