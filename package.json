@@ -12,6 +12,7 @@
   "dependencies": {
     "@types/react-rnd": "^8.0.0",
     "@types/styled-components": "^5.1.26",
+    "normalize.css": "^8.0.1",
     "react": "^18.1.0",
     "react-dom": "^18.2.0",
     "react-resizable-panels": "^0.0.53",
