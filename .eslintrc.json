@@ -1,0 +1,9 @@
+{
+  "extends": "react-app",
+  "rules": {
+    "no-redeclare": 0,
+    "@typescript-eslint/no-redeclare": 0,
+    "react/button-has-type": 1,
+    "react/function-component-definition": [1, { "namedComponents": "arrow-function" }]
+  }
+}
