@@ -10,9 +10,12 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@types/react-rnd": "^8.0.0",
     "@types/styled-components": "^5.1.26",
     "react": "^18.1.0",
     "react-dom": "^18.2.0",
+    "react-resizable-panels": "^0.0.53",
+    "react-rnd": "^10.4.1",
     "styled-components": "^6.0.2"
   },
   "devDependencies": {
