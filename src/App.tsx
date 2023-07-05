@@ -1,5 +1,11 @@
+import { SystemModal } from './components/SystemModal/SystemModal';
+
 const App = () => {
-  return <div></div>;
+  return (
+    <div>
+      <SystemModal opened onClose={() => {}} />
+    </div>
+  );
 };
 
 export { App };
