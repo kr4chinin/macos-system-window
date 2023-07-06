@@ -54,7 +54,7 @@ export const SystemModal = (props: Props) => {
       ref={modalRef}
       modalBounds={modalBounds}
       setModalBounds={setModalBounds}
-      onClick={modalFocusedHandlers.open}
+      onMouseDown={modalFocusedHandlers.open}
     >
       <StyledPanelGroup direction="horizontal" disablePointerEventsDuringResize>
         <LeftBlock modalFocused={modalFocused} onClose={onClose} />

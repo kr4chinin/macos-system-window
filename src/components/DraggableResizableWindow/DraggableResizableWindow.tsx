@@ -29,11 +29,10 @@ const Body = styled.div`
   }
 `;
 
-interface Props {
+interface Props extends React.HTMLAttributes<HTMLDivElement> {
   modalBounds: ModalBounds;
   children: ReactNode;
   setModalBounds: Dispatch<SetStateAction<ModalBounds>>;
-  onClick?: () => void;
 }
 
 export const modalMinSizes = {
@@ -42,7 +41,7 @@ export const modalMinSizes = {
 };
 
 export const DraggableResizableWindow = forwardRef<HTMLDivElement, Props>((props, ref) => {
-  const { modalBounds, children, setModalBounds, onClick } = props;
+  const { modalBounds, children, setModalBounds, ...rest } = props;
 
   const handleDragStop: RndDragCallback = (_, d) => {
     setModalBounds(prev => ({ ...prev, position: { x: d.x, y: d.y } }));
@@ -80,7 +79,7 @@ export const DraggableResizableWindow = forwardRef<HTMLDivElement, Props>((props
       onDragStop={handleDragStop}
       onResizeStop={handleResizeStop}
     >
-      <Body ref={ref} onClick={onClick}>
+      <Body {...rest} ref={ref}>
         {children}
       </Body>
     </Root>
