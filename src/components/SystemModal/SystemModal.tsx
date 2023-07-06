@@ -7,6 +7,7 @@ import { DraggableResizableWindow } from '../DraggableResizableWindow/DraggableR
 import { LeftBlock } from './ui/LeftBlock/LeftBlock';
 import { ResizeHandler } from './ui/ResizeHandler/ResizeHandler';
 import { RightBlock } from './ui/RightBlock/RightBlock';
+import { useClickOutside, useDisclosure } from '@mantine/hooks';
 
 const windowInnerHeight = window.innerHeight;
 
@@ -39,16 +40,24 @@ interface Props {
 export const SystemModal = (props: Props) => {
   const { opened, onClose } = props;
 
+  const [modalFocused, modalFocusedHandlers] = useDisclosure(false);
   const [modalBounds, setModalBounds] = useState<ModalBounds>(getDefaultModalBounds());
+
+  const modalRef = useClickOutside(modalFocusedHandlers.close);
 
   if (!opened) {
     return null;
   }
 
   return (
-    <DraggableResizableWindow modalBounds={modalBounds} setModalBounds={setModalBounds}>
+    <DraggableResizableWindow
+      ref={modalRef}
+      modalBounds={modalBounds}
+      setModalBounds={setModalBounds}
+      onClick={modalFocusedHandlers.open}
+    >
       <StyledPanelGroup direction="horizontal" disablePointerEventsDuringResize>
-        <LeftBlock onClose={onClose} />
+        <LeftBlock modalFocused={modalFocused} onClose={onClose} />
 
         <ResizeHandler />
 

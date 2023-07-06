@@ -1,4 +1,4 @@
-import { Dispatch, ReactNode, SetStateAction } from 'react';
+import { Dispatch, ReactNode, SetStateAction, forwardRef } from 'react';
 import { Rnd, RndDragCallback, RndResizeCallback } from 'react-rnd';
 import styled from 'styled-components';
 import { ModalBounds } from '../../models/ModalBounds';
@@ -33,6 +33,7 @@ interface Props {
   modalBounds: ModalBounds;
   children: ReactNode;
   setModalBounds: Dispatch<SetStateAction<ModalBounds>>;
+  onClick?: () => void;
 }
 
 export const modalMinSizes = {
@@ -40,8 +41,8 @@ export const modalMinSizes = {
   height: 400,
 };
 
-export const DraggableResizableWindow = (props: Props) => {
-  const { modalBounds, children, setModalBounds } = props;
+export const DraggableResizableWindow = forwardRef<HTMLDivElement, Props>((props, ref) => {
+  const { modalBounds, children, setModalBounds, onClick } = props;
 
   const handleDragStop: RndDragCallback = (_, d) => {
     setModalBounds(prev => ({ ...prev, position: { x: d.x, y: d.y } }));
@@ -79,7 +80,9 @@ export const DraggableResizableWindow = (props: Props) => {
       onDragStop={handleDragStop}
       onResizeStop={handleResizeStop}
     >
-      <Body>{children}</Body>
+      <Body ref={ref} onClick={onClick}>
+        {children}
+      </Body>
     </Root>
   );
-};
+});

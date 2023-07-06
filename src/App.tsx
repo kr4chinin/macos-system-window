@@ -1,10 +1,11 @@
+import { MantineProvider } from '@mantine/core';
 import { SystemModal } from './components/SystemModal/SystemModal';
 
 const App = () => {
   return (
-    <div>
+    <MantineProvider withNormalizeCSS>
       <SystemModal opened onClose={() => {}} />
-    </div>
+    </MantineProvider>
   );
 };
 

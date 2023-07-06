@@ -5,10 +5,12 @@ import {
 } from '../ControlRoundButton/ControlRoundButton';
 
 const Root = styled.div`
-  padding: 16px;
+  padding: 24px 16px;
 `;
 
 const ControlsWrapper = styled.div`
+  width: fit-content;
+
   display: flex;
   align-items: center;
   gap: 8px;
