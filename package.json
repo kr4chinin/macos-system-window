@@ -10,7 +10,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "normalize.css": "^8.0.1",
+    "@mantine/core": "^6.0.16",
+    "@mantine/hooks": "^6.0.16",
     "react": "^18.1.0",
     "react-dom": "^18.2.0",
     "react-resizable-panels": "^0.0.53",
