@@ -6,9 +6,9 @@ const Root = styled(Panel)`
   display: flex;
   flex-direction: column;
 
-  background-color: rgb(41, 40, 54);
+  background-color: #292836;
 
-  color: rgb(99, 97, 111);
+  color: #63616f;
 `;
 
 interface Props {

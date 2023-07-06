@@ -1,8 +1,28 @@
-import { HTMLAttributes, ReactNode } from 'react';
-import { css, styled } from 'styled-components';
+import { CSSProperties, HTMLAttributes, ReactNode } from 'react';
+import { styled } from 'styled-components';
 import { ReactComponent as CloseIcon } from '../../../../assets/icons/SystemModal/close.svg';
-import { ReactComponent as MinimizeIcon } from '../../../../assets/icons/SystemModal/minimize.svg';
 import { ReactComponent as ExpandIcon } from '../../../../assets/icons/SystemModal/expand.svg';
+import { ReactComponent as MinimizeIcon } from '../../../../assets/icons/SystemModal/minimize.svg';
+
+interface BackgroundColorVariant {
+  bgColor: CSSProperties['backgroundColor'];
+  activeBgColor: CSSProperties['backgroundColor'];
+}
+
+const roundButtonColors: Record<ControlRoundButtonVariant, BackgroundColorVariant> = {
+  close: {
+    bgColor: '#ed6a5e',
+    activeBgColor: '#f0938a',
+  },
+  minimize: {
+    bgColor: '#f5bf4f',
+    activeBgColor: '#fcea74',
+  },
+  expand: {
+    bgColor: '#61c554',
+    activeBgColor: '#8de58e',
+  },
+};
 
 const Root = styled.button<{ variant: ControlRoundButtonVariant }>`
   border: none;
@@ -19,28 +39,18 @@ const Root = styled.button<{ variant: ControlRoundButtonVariant }>`
 
   border-radius: 50%;
 
-  ${p =>
-    p.variant === 'close' &&
-    css`
-      background-color: rgb(237, 106, 94);
-    `}
+  background-color: ${p => roundButtonColors[p.variant].bgColor};
 
-  ${p =>
-    p.variant === 'minimize' &&
-    css`
-      background-color: rgb(245, 191, 79);
-    `}
-
-  ${p =>
-    p.variant === 'expand' &&
-    css`
-      background-color: rgb(97, 197, 84);
-    `}
+  &:active {
+    background-color: ${p => roundButtonColors[p.variant].activeBgColor};
+  }
 `;
 
 type ControlRoundButtonVariant = 'close' | 'minimize' | 'expand';
 
-interface Props extends HTMLAttributes<HTMLButtonElement> {
+type OmittedHTMLButtonAttributes = Omit<HTMLAttributes<HTMLButtonElement>, 'className'>;
+
+interface Props extends OmittedHTMLButtonAttributes {
   variant: ControlRoundButtonVariant;
 }
 
@@ -55,14 +65,14 @@ const getIcon = (variant: ControlRoundButtonVariant): ReactNode => {
   }
 };
 
-const ControlRoundButton = (props: Props) => {
+export const CONTROL_ROUND_BUTTON_CLASS = 'ControlRoundButton__Root';
+
+export const ControlRoundButton = (props: Props) => {
   const { variant, ...rest } = props;
 
   return (
-    <Root {...rest} type="button" variant={variant}>
+    <Root {...rest} type="button" className={CONTROL_ROUND_BUTTON_CLASS} variant={variant}>
       {getIcon(variant)}
     </Root>
   );
 };
-
-export { ControlRoundButton };

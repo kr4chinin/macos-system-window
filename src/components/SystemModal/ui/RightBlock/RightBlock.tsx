@@ -2,7 +2,7 @@ import { Panel } from 'react-resizable-panels';
 import { styled } from 'styled-components';
 
 const StyledPanel = styled(Panel)`
-  background-color: rgb(32, 31, 45);
+  background-color: #201f2d;
 `;
 
 export const RightBlock = () => {

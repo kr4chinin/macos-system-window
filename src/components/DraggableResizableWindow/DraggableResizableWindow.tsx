@@ -11,9 +11,9 @@ const Root = styled(Rnd)`
   pointer-events: all;
   flex-direction: column;
 
-  background-color: rgb(255, 255, 255);
-  border: 1px solid rgb(107, 106, 115);
   border-radius: 8px;
+  background-color: #fff;
+  border: 1px solid #6b6a73;
   box-shadow: 0 88px 48px rgba(146, 151, 176, 0.01), 0 64px 40px rgba(146, 151, 176, 0.05),
     0 32px 32px rgba(146, 151, 176, 0.09), 0 8px 16px rgba(146, 151, 176, 0.1);
 `;
