@@ -8,12 +8,12 @@ const Root = styled(Panel)<{ modalFocused: boolean }>`
 
   background-color: #292836;
 
-  color: #63616f;
+  color: #6c697994;
 
   ${p =>
     p.modalFocused &&
     css`
-      background-color: rgba(41, 40, 54, 0.4);
+      background-color: #292836c7;
       backdrop-filter: blur(8px);
     `}
 `;

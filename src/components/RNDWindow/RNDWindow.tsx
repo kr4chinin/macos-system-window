@@ -13,10 +13,9 @@ const Root = styled(Rnd)`
   flex-direction: column;
 
   border-radius: 8px;
-  background-color: #fff;
+  background-color: transparent;
   border: 1px solid #6b6a73;
-  box-shadow: 0 88px 48px rgba(146, 151, 176, 0.01), 0 64px 40px rgba(146, 151, 176, 0.05),
-    0 32px 32px rgba(146, 151, 176, 0.09), 0 8px 16px rgba(146, 151, 176, 0.1);
+  box-shadow: 0 0 0 1px #6b6a73, 0 8px 16px 0 rgba(0, 0, 0, 0.2);
 `;
 
 const Body = styled.div`
