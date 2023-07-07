@@ -2,6 +2,7 @@ import { Dispatch, ReactNode, SetStateAction, forwardRef } from 'react';
 import { Rnd, RndDragCallback, RndResizeCallback } from 'react-rnd';
 import styled from 'styled-components';
 import { ModalBounds } from '../../models/ModalBounds';
+import { SystemClasses } from '../../models/SystemClasses';
 
 const Root = styled(Rnd)`
   // we use important to override react-rnd inline styles
@@ -40,7 +41,7 @@ export const modalMinSizes = {
   height: 400,
 };
 
-export const DraggableResizableWindow = forwardRef<HTMLDivElement, Props>((props, ref) => {
+export const RNDWindow = forwardRef<HTMLDivElement, Props>((props, ref) => {
   const { modalBounds, children, setModalBounds, ...rest } = props;
 
   const handleDragStop: RndDragCallback = (_, d) => {
@@ -59,7 +60,7 @@ export const DraggableResizableWindow = forwardRef<HTMLDivElement, Props>((props
 
   return (
     <Root
-      // dragHandleClassName={'.some-class'}
+      dragHandleClassName={SystemClasses.RND_WINDOW_DRAGGABLE}
       minWidth={modalMinSizes.width}
       minHeight={modalMinSizes.height}
       default={{
