@@ -1,21 +1,17 @@
 import { Panel } from 'react-resizable-panels';
-import { css, styled } from 'styled-components';
+import { styled } from 'styled-components';
+import { LeftBlockContent } from '../LeftBlockContent/LeftBlockContent';
 import { LeftBlockHeader } from '../LeftBlockHeader/LeftBlockHeader';
 
 const Root = styled(Panel)<{ modalFocused: boolean }>`
+  position: relative;
+
   display: flex;
   flex-direction: column;
 
-  background-color: #292836;
-
-  color: #6c697994;
-
-  ${p =>
-    p.modalFocused &&
-    css`
-      background-color: #292836c7;
-      backdrop-filter: blur(8px);
-    `}
+  color: var(--gray);
+  background-color: var(--transparent-modal-background);
+  backdrop-filter: blur(20px);
 `;
 
 interface Props {
@@ -29,10 +25,7 @@ export const LeftBlock = (props: Props) => {
   return (
     <Root modalFocused={modalFocused} defaultSize={30} maxSize={50} minSize={10}>
       <LeftBlockHeader onClose={onClose} />
-      Lorem ipsum, dolor sit amet consectetur adipisicing elit. Perferendis eum minus harum fugiat
-      accusamus eos dicta cum vero amet vel distinctio et doloremque voluptates quo saepe,
-      laudantium modi ex praesentium? Fugiat ipsam facere itaque laborum recusandae totam incidunt
-      aspernatur tenetur.
+      <LeftBlockContent />
     </Root>
   );
 };

@@ -1,12 +1,12 @@
 import { styled } from 'styled-components';
 import { SystemClasses } from '../../../../models/SystemClasses';
-import { ControlRoundButton } from '../ControlRoundButton/ControlRoundButton';
+import { TrafficLightButton } from '../TrafficLightButton/TrafficLightButton';
 
 const Root = styled.div`
-  padding: 24px 16px;
+  padding: 20px 20px 18px;
 `;
 
-const ControlsWrapper = styled.div`
+const TrafficLights = styled.div`
   width: fit-content;
 
   display: flex;
@@ -37,11 +37,11 @@ export const LeftBlockHeader = (props: Props) => {
 
   return (
     <Root className={SystemClasses.RND_WINDOW_DRAGGABLE}>
-      <ControlsWrapper>
-        <ControlRoundButton variant="close" onClick={onClose} />
-        <ControlRoundButton variant="minimize" />
-        <ControlRoundButton variant="expand" />
-      </ControlsWrapper>
+      <TrafficLights>
+        <TrafficLightButton variant="close" onClick={onClose} />
+        <TrafficLightButton variant="minimize" />
+        <TrafficLightButton variant="expand" />
+      </TrafficLights>
     </Root>
   );
 };

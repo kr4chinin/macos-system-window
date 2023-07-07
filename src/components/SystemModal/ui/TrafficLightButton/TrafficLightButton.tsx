@@ -10,9 +10,9 @@ interface BackgroundColorVariant {
   activeBgColor: CSSProperties['backgroundColor'];
 }
 
-const roundButtonColors: Record<ControlRoundButtonVariant, BackgroundColorVariant> = {
+const roundButtonColors: Record<TrafficLightButtonVariant, BackgroundColorVariant> = {
   close: {
-    bgColor: '#ed6a5e',
+    bgColor: '#ed6a5f',
     activeBgColor: '#f0938a',
   },
   minimize: {
@@ -25,7 +25,7 @@ const roundButtonColors: Record<ControlRoundButtonVariant, BackgroundColorVarian
   },
 };
 
-const Root = styled.button<{ variant: ControlRoundButtonVariant }>`
+const Root = styled.button<{ variant: TrafficLightButtonVariant }>`
   border: none;
   background: none;
   padding: 0;
@@ -47,15 +47,15 @@ const Root = styled.button<{ variant: ControlRoundButtonVariant }>`
   }
 `;
 
-type ControlRoundButtonVariant = 'close' | 'minimize' | 'expand';
+type TrafficLightButtonVariant = 'close' | 'minimize' | 'expand';
 
 type OmittedHTMLButtonAttributes = Omit<HTMLAttributes<HTMLButtonElement>, 'className'>;
 
 interface Props extends OmittedHTMLButtonAttributes {
-  variant: ControlRoundButtonVariant;
+  variant: TrafficLightButtonVariant;
 }
 
-const getIcon = (variant: ControlRoundButtonVariant): ReactNode => {
+const getIcon = (variant: TrafficLightButtonVariant): ReactNode => {
   switch (variant) {
     case 'close':
       return <CloseIcon />;
@@ -66,7 +66,7 @@ const getIcon = (variant: ControlRoundButtonVariant): ReactNode => {
   }
 };
 
-export const ControlRoundButton = (props: Props) => {
+export const TrafficLightButton = (props: Props) => {
   const { variant, ...rest } = props;
 
   return (

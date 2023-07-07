@@ -12,10 +12,11 @@ const Root = styled(Rnd)`
   pointer-events: all;
   flex-direction: column;
 
-  border-radius: 8px;
+  border-radius: 10px;
   background-color: transparent;
-  border: 1px solid #6b6a73;
-  box-shadow: 0 0 0 1px #6b6a73, 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+  border: 1px solid #78797a85;
+
+  box-shadow: var(--rnd-window-shadow);
 `;
 
 const Body = styled.div`
