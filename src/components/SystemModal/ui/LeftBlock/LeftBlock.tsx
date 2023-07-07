@@ -28,7 +28,7 @@ export const LeftBlock = (props: Props) => {
 
   return (
     <Root modalFocused={modalFocused} defaultSize={30} maxSize={50} minSize={10}>
-      <LeftBlockHeader />
+      <LeftBlockHeader onClose={onClose} />
       Lorem ipsum, dolor sit amet consectetur adipisicing elit. Perferendis eum minus harum fugiat
       accusamus eos dicta cum vero amet vel distinctio et doloremque voluptates quo saepe,
       laudantium modi ex praesentium? Fugiat ipsam facere itaque laborum recusandae totam incidunt

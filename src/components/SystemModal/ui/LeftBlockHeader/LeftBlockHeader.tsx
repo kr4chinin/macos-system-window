@@ -1,8 +1,6 @@
 import { styled } from 'styled-components';
-import {
-  CONTROL_ROUND_BUTTON_CLASS,
-  ControlRoundButton,
-} from '../ControlRoundButton/ControlRoundButton';
+import { SystemClasses } from '../../../../models/SystemClasses';
+import { ControlRoundButton } from '../ControlRoundButton/ControlRoundButton';
 
 const Root = styled.div`
   padding: 24px 16px;
@@ -15,14 +13,14 @@ const ControlsWrapper = styled.div`
   align-items: center;
   gap: 8px;
 
-  .${CONTROL_ROUND_BUTTON_CLASS} {
+  .${SystemClasses.CONTROL_ROUND_BUTTON} {
     svg {
       visibility: hidden;
     }
   }
 
   &:hover {
-    .${CONTROL_ROUND_BUTTON_CLASS} {
+    .${SystemClasses.CONTROL_ROUND_BUTTON} {
       svg {
         visibility: visible;
       }
@@ -30,11 +28,17 @@ const ControlsWrapper = styled.div`
   }
 `;
 
-export const LeftBlockHeader = () => {
+interface Props {
+  onClose: () => void;
+}
+
+export const LeftBlockHeader = (props: Props) => {
+  const { onClose } = props;
+
   return (
-    <Root>
+    <Root className={SystemClasses.RND_WINDOW_DRAGGABLE}>
       <ControlsWrapper>
-        <ControlRoundButton variant="close" />
+        <ControlRoundButton variant="close" onClick={onClose} />
         <ControlRoundButton variant="minimize" />
         <ControlRoundButton variant="expand" />
       </ControlsWrapper>

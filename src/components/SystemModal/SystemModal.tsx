@@ -3,7 +3,7 @@ import { PanelGroup } from 'react-resizable-panels';
 import { styled } from 'styled-components';
 import { ModalBounds } from '../../models/ModalBounds';
 import { ModalPosition } from '../../models/ModalPosition';
-import { DraggableResizableWindow } from '../DraggableResizableWindow/DraggableResizableWindow';
+import { RNDWindow } from '../RNDWindow/RNDWindow';
 import { LeftBlock } from './ui/LeftBlock/LeftBlock';
 import { ResizeHandler } from './ui/ResizeHandler/ResizeHandler';
 import { RightBlock } from './ui/RightBlock/RightBlock';
@@ -50,7 +50,7 @@ export const SystemModal = (props: Props) => {
   }
 
   return (
-    <DraggableResizableWindow
+    <RNDWindow
       ref={modalRef}
       modalBounds={modalBounds}
       setModalBounds={setModalBounds}
@@ -63,6 +63,6 @@ export const SystemModal = (props: Props) => {
 
         <RightBlock />
       </StyledPanelGroup>
-    </DraggableResizableWindow>
+    </RNDWindow>
   );
 };
