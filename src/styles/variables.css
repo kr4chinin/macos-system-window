@@ -1,0 +1,11 @@
+:root {
+  --modal-background: #1c1d1f;
+  --transparent-modal-background: rgba(40, 40, 40, 0.75);
+
+  --gray: #dfdedf;
+  --gray-60: #ebebf599;
+
+  --rnd-window-shadow: 0 25px 30px 0 rgba(0, 0, 0, 0.35), 0 0 20px 0 rgba(0, 0, 0, 0.15),
+    0.5px 0.5px 1px 0 #78797a inset, -0.5px -0.5px 1px 0 #78797a inset,
+    0 0 1px 1px rgba(0, 0, 0, 0.5);
+}
