@@ -12,3 +12,12 @@ html {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+body {
+  height: 100dvh;
+
+  background-image: url('/background.jpg');
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
