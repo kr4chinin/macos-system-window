@@ -1,15 +1,17 @@
 import { styled } from 'styled-components';
+import { DirectoryCollapsibleList } from '../DirectoryCollapsibleList/DirectoryCollapsibleList';
+import { makeFavoritesList } from '../../helpers/makeFavoritesList';
 
 const Root = styled.div`
   padding: 0 12px 12px;
 `;
 
+const favoritesList = makeFavoritesList();
+
 export const LeftBlockContent = () => {
   return (
     <Root>
-      Lorem ipsum, dolor sit amet consectetur adipisicing elit. Fuga ad atque sed officiis ipsam
-      eaque deleniti aut architecto odit quo modi temporibus voluptatum beatae non consectetur
-      distinctio illum, soluta accusantium.
+      <DirectoryCollapsibleList title="Favorites" listOptions={favoritesList} />
     </Root>
   );
 };
