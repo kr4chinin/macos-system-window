@@ -6,6 +6,9 @@ const SystemScrollArea = (props: ScrollAreaProps) => {
   return (
     <ScrollArea
       {...rest}
+      type="scroll"
+      scrollbarSize={12}
+      scrollHideDelay={2000}
       styles={() => ({
         scrollbar: {
           '&, &:hover': {
@@ -13,7 +16,6 @@ const SystemScrollArea = (props: ScrollAreaProps) => {
           },
         },
       })}
-      scrollbarSize={12}
     >
       {children}
     </ScrollArea>
