@@ -73,9 +73,11 @@ const Item = styled.li`
   font-weight: 500;
   letter-spacing: 0.08px;
 
-  ${truncate}
-
   padding: 6px;
+`;
+
+const ItemLabel = styled.span`
+  ${truncate}
 `;
 
 const IconWrapper = styled.div`
@@ -116,7 +118,8 @@ export const DirectoryCollapsibleList = (props: Props) => {
           {listOptions.map(o => (
             <Item key={o.value}>
               {o.icon && <IconWrapper>{o.icon}</IconWrapper>}
-              {o.label}
+
+              <ItemLabel>{o.label}</ItemLabel>
             </Item>
           ))}
         </List>
