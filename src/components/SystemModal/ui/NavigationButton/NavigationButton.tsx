@@ -1,33 +1,18 @@
 import { ButtonHTMLAttributes } from 'react';
 import { styled } from 'styled-components';
 import { ReactComponent as BackIcon } from '../../../../assets/icons/SystemModal/back.svg';
+import { RightBlockHeaderButton } from '../RightBlockHeaderButton/RightBlockHeaderButton';
 
-const Root = styled.button<{ rotated: boolean }>`
-  padding: 0;
-  border: none;
-  background: none;
-
-  width: 32px;
-  height: 24px;
+const BackIconWrapper = styled.div<{ $rotated: boolean }>`
+  width: 18px;
+  height: 18px;
 
   display: flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
 
-  border-radius: 4px;
-
-  transform: ${p => (p.rotated ? 'rotate(180deg)' : 'none')};
-
-  &:hover:not(:disabled) {
-    background-color: #43424c;
-  }
-
-  &:disabled {
-    svg path {
-      fill: rgb(91, 90, 100);
-    }
-  }
+  transform: ${p => (p.$rotated ? 'rotate(180deg)' : 'none')};
 `;
 
 type NavigationButtonVariant = 'back' | 'forward';
@@ -36,14 +21,14 @@ interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
   variant: NavigationButtonVariant;
 }
 
-const NavigationButton = (props: Props) => {
+export const NavigationButton = (props: Props) => {
   const { variant, ...rest } = props;
 
   return (
-    <Root rotated={variant === 'forward'} {...rest}>
-      <BackIcon />
-    </Root>
+    <RightBlockHeaderButton width="32px" {...rest}>
+      <BackIconWrapper $rotated={variant === 'forward'}>
+        <BackIcon />
+      </BackIconWrapper>
+    </RightBlockHeaderButton>
   );
 };
-
-export { NavigationButton };
