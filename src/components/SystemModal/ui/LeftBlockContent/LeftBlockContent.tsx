@@ -1,4 +1,5 @@
 import { styled } from 'styled-components';
+import { ScrollPosition } from '../../../../models/ScrollPosition';
 import { SystemScrollArea } from '../../../SystemScrollArea/SystemScrollArea';
 import { makeFavoritesList } from '../../helpers/makeFavoritesList';
 import { makeICloudList } from '../../helpers/makeICloudList';
@@ -19,9 +20,15 @@ const iCloudList = makeICloudList();
 const locationsList = makeLocationsList();
 const tagsList = makeTagsList();
 
-export const LeftBlockContent = () => {
+interface Props {
+  onScrollPositionChange: (scrollPosition: ScrollPosition) => void;
+}
+
+export const LeftBlockContent = (props: Props) => {
+  const { onScrollPositionChange } = props;
+
   return (
-    <SystemScrollArea>
+    <SystemScrollArea onScrollPositionChange={onScrollPositionChange}>
       <Root>
         <DirectoryCollapsibleList title="Favorites" listOptions={favoritesList} />
         <DirectoryCollapsibleList title="iCloud" listOptions={iCloudList} />

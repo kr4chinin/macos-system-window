@@ -2,8 +2,10 @@ import { styled } from 'styled-components';
 import { SystemClasses } from '../../../../models/SystemClasses';
 import { TrafficLightButton } from '../TrafficLightButton/TrafficLightButton';
 
-const Root = styled.div`
+const Root = styled.div<{ $hasBorderBottom: boolean }>`
   padding: 20px 20px 18px;
+  border-bottom: 1px solid ${p => (p.$hasBorderBottom ? 'var(--border-dark)' : 'transparent')};
+  transition: border-bottom 0.2s ease-in-out;
 `;
 
 const TrafficLights = styled.div`
@@ -29,14 +31,15 @@ const TrafficLights = styled.div`
 `;
 
 interface Props {
+  contentScrolled: boolean;
   onClose: () => void;
 }
 
 export const LeftBlockHeader = (props: Props) => {
-  const { onClose } = props;
+  const { contentScrolled, onClose } = props;
 
   return (
-    <Root className={SystemClasses.RND_WINDOW_DRAGGABLE}>
+    <Root className={SystemClasses.RND_WINDOW_DRAGGABLE} $hasBorderBottom={contentScrolled}>
       <TrafficLights>
         <TrafficLightButton variant="close" onClick={onClose} />
         <TrafficLightButton variant="minimize" />

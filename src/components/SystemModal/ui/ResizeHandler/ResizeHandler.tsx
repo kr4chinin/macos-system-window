@@ -4,7 +4,7 @@ import styled from 'styled-components';
 export const ResizeHandler = styled(PanelResizeHandle)`
   position: relative;
 
-  border-right: 1px solid #15141b;
+  border-right: 1px solid var(--border-dark);
 
   // we use this pseudo-elements to make it easier to click on the resize handler
   &::after {
