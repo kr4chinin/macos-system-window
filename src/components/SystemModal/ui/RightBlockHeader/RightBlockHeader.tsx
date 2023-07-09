@@ -1,6 +1,7 @@
 import { styled } from 'styled-components';
 import { SystemClasses } from '../../../../models/SystemClasses';
 import { NavigationButton } from '../NavigationButton/NavigationButton';
+import { SearchButton } from '../SearchButton/SearchButton';
 
 const Root = styled.div`
   width: 100%;
@@ -8,8 +9,9 @@ const Root = styled.div`
 
   display: flex;
   align-items: center;
+  gap: 12px;
 
-  padding: 10px 20px;
+  padding: 10px 16px;
   background-color: #37363f;
   border-bottom: 1px solid var(--border-dark);
 `;
@@ -19,6 +21,18 @@ const NavigationButtonsWrapper = styled.div`
   align-items: center;
 `;
 
+const DirectoryName = styled.h2`
+  margin: 0;
+
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--gray);
+`;
+
+const SearchButtonWrapper = styled.div`
+  margin-left: auto;
+`;
+
 export const RightBlockHeader = () => {
   return (
     <Root className={SystemClasses.RND_WINDOW_DRAGGABLE}>
@@ -26,6 +40,12 @@ export const RightBlockHeader = () => {
         <NavigationButton variant="back" />
         <NavigationButton variant="forward" />
       </NavigationButtonsWrapper>
+
+      <DirectoryName>Directory</DirectoryName>
+
+      <SearchButtonWrapper>
+        <SearchButton />
+      </SearchButtonWrapper>
     </Root>
   );
 };
