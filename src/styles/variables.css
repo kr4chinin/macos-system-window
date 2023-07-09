@@ -1,4 +1,6 @@
 :root {
+  --header-height: 51px;
+
   --modal-background: #1c1d1f;
   --transparent-modal-background: rgba(40, 40, 40, 0.75);
 
