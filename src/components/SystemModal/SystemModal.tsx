@@ -1,5 +1,5 @@
 import { useClickOutside, useDisclosure } from '@mantine/hooks';
-import { useEffect, useRef, useState } from 'react';
+import { useCallback, useLayoutEffect, useRef, useState } from 'react';
 import { ImperativePanelHandle, PanelGroup } from 'react-resizable-panels';
 import { styled } from 'styled-components';
 import { ModalBounds } from '../../models/ModalBounds';
@@ -47,10 +47,22 @@ export const SystemModal = (props: Props) => {
   const modalRef = useClickOutside(close);
   const leftPanelRef = useRef<ImperativePanelHandle>(null);
 
-  const [leftBlockCollapsed, setLeftBlockCollapsed] = useState(true);
+  // we need this indicator because onCollapse cb will be triggered even with imperative api call
+  // so that there is no way to know if panel was collapsed by user or by imperative api call
+  const leftPanelHardCollapsed = useRef(false);
 
-  useEffect(() => {
-    if (!leftPanelRef.current) {
+  const [leftPanelCollapsed, setLeftPanelCollapsed] = useState(true);
+
+  const handleHardCollapse = useCallback((collapsed: boolean) => {
+    if (collapsed) {
+      leftPanelHardCollapsed.current = true;
+    }
+
+    setLeftPanelCollapsed(collapsed);
+  }, []);
+
+  useLayoutEffect(() => {
+    if (!leftPanelRef.current || leftPanelHardCollapsed.current) {
       return;
     }
 
@@ -59,12 +71,18 @@ export const SystemModal = (props: Props) => {
     const width = extractNumericWidth(size.width);
     const height = extractNumericWidth(size.height);
 
-    if (height < 450 && width < 650) {
-      leftPanelRef.current.collapse();
+    const { collapse, expand } = leftPanelRef.current;
 
-      setLeftBlockCollapsed(true);
+    if (height < 450 && width < 650) {
+      collapse();
+
+      setLeftPanelCollapsed(true);
+
+      leftPanelHardCollapsed.current = false;
     } else {
-      leftPanelRef.current.expand();
+      expand();
+
+      leftPanelHardCollapsed.current = false;
     }
   }, [modalBounds]);
 
@@ -84,10 +102,10 @@ export const SystemModal = (props: Props) => {
           ref={leftPanelRef}
           modalFocused={modalFocused}
           onClose={onClose}
-          onCollapse={setLeftBlockCollapsed}
+          onCollapse={handleHardCollapse}
         />
 
-        <ResizeHandler hidden={leftBlockCollapsed} />
+        <ResizeHandler hidden={leftPanelCollapsed} />
 
         <RightBlock />
       </StyledPanelGroup>
