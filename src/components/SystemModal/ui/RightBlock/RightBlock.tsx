@@ -8,7 +8,7 @@ const StyledPanel = styled(Panel)`
 
 export const RightBlock = () => {
   return (
-    <StyledPanel defaultSize={70} maxSize={90} minSize={50}>
+    <StyledPanel defaultSize={70} maxSize={100}>
       <RightBlockHeader />
     </StyledPanel>
   );

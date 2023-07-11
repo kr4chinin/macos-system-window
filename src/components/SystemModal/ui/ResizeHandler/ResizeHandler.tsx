@@ -1,10 +1,12 @@
 import { PanelResizeHandle } from 'react-resizable-panels';
 import styled from 'styled-components';
 
-export const ResizeHandler = styled(PanelResizeHandle)`
+export const ResizeHandler = styled(PanelResizeHandle)<{ hidden: boolean }>`
   position: relative;
 
   border-right: 1px solid var(--border-dark);
+
+  display: ${p => (p.hidden ? 'none' : 'block')};
 
   // we use this pseudo-elements to make it easier to click on the resize handler
   &::after {

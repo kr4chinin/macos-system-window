@@ -1,13 +1,14 @@
-import { useState } from 'react';
-import { PanelGroup } from 'react-resizable-panels';
+import { useClickOutside, useDisclosure } from '@mantine/hooks';
+import { useEffect, useRef, useState } from 'react';
+import { ImperativePanelHandle, PanelGroup } from 'react-resizable-panels';
 import { styled } from 'styled-components';
 import { ModalBounds } from '../../models/ModalBounds';
 import { ModalPosition } from '../../models/ModalPosition';
 import { RNDWindow } from '../RNDWindow/RNDWindow';
+import { extractNumericWidth } from './helpers/extractNumericWidth';
 import { LeftBlock } from './ui/LeftBlock/LeftBlock';
 import { ResizeHandler } from './ui/ResizeHandler/ResizeHandler';
 import { RightBlock } from './ui/RightBlock/RightBlock';
-import { useClickOutside, useDisclosure } from '@mantine/hooks';
 
 const windowInnerHeight = window.innerHeight;
 
@@ -40,10 +41,36 @@ interface Props {
 export const SystemModal = (props: Props) => {
   const { opened, onClose } = props;
 
-  const [modalFocused, modalFocusedHandlers] = useDisclosure(false);
+  const [modalFocused, { close, open }] = useDisclosure(false);
   const [modalBounds, setModalBounds] = useState<ModalBounds>(getDefaultModalBounds());
 
-  const modalRef = useClickOutside(modalFocusedHandlers.close);
+  const modalRef = useClickOutside(close);
+  const leftPanelRef = useRef<ImperativePanelHandle>(null);
+
+  const [leftBlockCollapsed, setLeftBlockCollapsed] = useState(true);
+
+  useEffect(() => {
+    if (!leftPanelRef.current) {
+      return;
+    }
+
+    const { size } = modalBounds;
+
+    const width = extractNumericWidth(size.width);
+    const height = extractNumericWidth(size.height);
+
+    if (height < 450 && width < 650) {
+      leftPanelRef.current.collapse();
+
+      setLeftBlockCollapsed(true);
+    } else {
+      leftPanelRef.current.expand();
+    }
+  }, [modalBounds]);
+
+  useEffect(() => {
+    console.log(leftBlockCollapsed);
+  }, [leftBlockCollapsed]);
 
   if (!opened) {
     return null;
@@ -54,12 +81,17 @@ export const SystemModal = (props: Props) => {
       ref={modalRef}
       modalBounds={modalBounds}
       setModalBounds={setModalBounds}
-      onMouseDown={modalFocusedHandlers.open}
+      onMouseDown={open}
     >
       <StyledPanelGroup direction="horizontal" disablePointerEventsDuringResize>
-        <LeftBlock modalFocused={modalFocused} onClose={onClose} />
+        <LeftBlock
+          ref={leftPanelRef}
+          modalFocused={modalFocused}
+          onClose={onClose}
+          onCollapse={setLeftBlockCollapsed}
+        />
 
-        <ResizeHandler />
+        <ResizeHandler hidden={leftBlockCollapsed} />
 
         <RightBlock />
       </StyledPanelGroup>

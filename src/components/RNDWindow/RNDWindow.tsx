@@ -48,7 +48,7 @@ export const RNDWindow = forwardRef<HTMLDivElement, Props>((props, ref) => {
     setModalBounds(prev => ({ ...prev, position: { x: d.x, y: d.y } }));
   };
 
-  const handleResizeStop: RndResizeCallback = (_, _i, ref, _j, pos) => {
+  const handleResize: RndResizeCallback = (_, _i, ref, _j, pos) => {
     setModalBounds({
       size: {
         width: ref.style.width,
@@ -78,7 +78,7 @@ export const RNDWindow = forwardRef<HTMLDivElement, Props>((props, ref) => {
       }}
       position={{ x: modalBounds.position.x, y: modalBounds.position.y }}
       onDragStop={handleDragStop}
-      onResizeStop={handleResizeStop}
+      onResize={handleResize}
     >
       <Body {...rest} ref={ref}>
         {children}

@@ -1,9 +1,9 @@
-import { Panel } from 'react-resizable-panels';
+import { forwardRef, useState } from 'react';
+import { ImperativePanelHandle, Panel } from 'react-resizable-panels';
 import { styled } from 'styled-components';
+import { ScrollPosition } from '../../../../models/ScrollPosition';
 import { LeftBlockContent } from '../LeftBlockContent/LeftBlockContent';
 import { LeftBlockHeader } from '../LeftBlockHeader/LeftBlockHeader';
-import { useState } from 'react';
-import { ScrollPosition } from '../../../../models/ScrollPosition';
 
 const Root = styled(Panel)<{ modalFocused: boolean }>`
   position: relative;
@@ -19,17 +19,27 @@ const Root = styled(Panel)<{ modalFocused: boolean }>`
 interface Props {
   modalFocused: boolean;
   onClose: () => void;
+  onCollapse: (collapsed: boolean) => void;
 }
 
-export const LeftBlock = (props: Props) => {
-  const { modalFocused, onClose } = props;
+export const LeftBlock = forwardRef<ImperativePanelHandle, Props>((props, ref) => {
+  const { modalFocused, onClose, onCollapse } = props;
 
   const [scrollPosition, onScrollPositionChange] = useState<ScrollPosition>({ x: 0, y: 0 });
 
   return (
-    <Root modalFocused={modalFocused} defaultSize={30} maxSize={50} minSize={10}>
+    <Root
+      ref={ref}
+      modalFocused={modalFocused}
+      collapsible
+      minSize={20}
+      maxSize={40}
+      defaultSize={30}
+      collapsedSize={0}
+      onCollapse={onCollapse}
+    >
       <LeftBlockHeader contentScrolled={scrollPosition.y > 0} onClose={onClose} />
       <LeftBlockContent onScrollPositionChange={onScrollPositionChange} />
     </Root>
   );
-};
+});
