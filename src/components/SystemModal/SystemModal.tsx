@@ -68,10 +68,6 @@ export const SystemModal = (props: Props) => {
     }
   }, [modalBounds]);
 
-  useEffect(() => {
-    console.log(leftBlockCollapsed);
-  }, [leftBlockCollapsed]);
-
   if (!opened) {
     return null;
   }
