@@ -13,8 +13,8 @@ import { RightBlock } from './ui/RightBlock/RightBlock';
 const windowInnerHeight = window.innerHeight;
 
 const defaultModalSize = {
-  width: 912,
-  height: 606,
+  width: 920,
+  height: 610,
 };
 
 const defaultModalPosition: ModalPosition = {
