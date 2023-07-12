@@ -69,7 +69,7 @@ export const RNDWindow = forwardRef<HTMLDivElement, Props>((props, ref) => {
         width: modalMinSizes.width,
         height: modalMinSizes.height,
       }}
-      bounds="window"
+      bounds="parent"
       size={{
         width: modalBounds.size.width,
         height: modalBounds.size.height,
