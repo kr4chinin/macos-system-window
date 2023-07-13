@@ -12,6 +12,8 @@ const Root = styled.button<RootProps>`
   background: none;
   border: none;
 
+  height: 100%;
+
   border-radius: 4px;
   padding: ${p => (p.$icon ? '0 16px' : '4px 8px 3px')};
 
@@ -50,7 +52,17 @@ export const NavbarElement = (props: Props) => {
   const [opened, { open, close }] = useDisclosure(false);
 
   return (
-    <HoverCard withinPortal position="bottom-start" offset={4} onOpen={open} onClose={close}>
+    <HoverCard
+      offset={4}
+      withinPortal
+      openDelay={200}
+      position="bottom-start"
+      transitionProps={{
+        exitDuration: 100,
+      }}
+      onOpen={open}
+      onClose={close}
+    >
       <HoverCard.Target>
         <Root {...rest} type="button" $active={opened} $icon={icon}>
           {target}

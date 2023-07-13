@@ -1,8 +1,8 @@
+import { ReactNode } from 'react';
 import { styled } from 'styled-components';
 import { truncate } from '../../../mixins/truncate';
-import { ReactNode } from 'react';
 
-export const Root = styled.li`
+export const Root = styled.li<{ $light?: boolean }>`
   width: 100%;
 
   display: flex;
@@ -10,10 +10,10 @@ export const Root = styled.li`
   justify-content: space-between;
   gap: 16px;
 
-  color: var(--gray);
   font-size: 13px;
   font-weight: 500;
   letter-spacing: -0.25px;
+  color: ${p => (p.$light ? 'var(--gray-60)' : 'var(--gray)')};
 
   padding: 3px 10px 4px;
   border-radius: 4px;
@@ -32,13 +32,14 @@ const RightContent = styled.span`
 interface Props {
   children: ReactNode;
   rightContent?: ReactNode;
+  light?: boolean;
 }
 
 export const NavbarMenuItem = (props: Props) => {
-  const { children, rightContent } = props;
+  const { children, rightContent, light } = props;
 
   return (
-    <Root>
+    <Root $light={light}>
       {children}
 
       <RightContent>{rightContent}</RightContent>
