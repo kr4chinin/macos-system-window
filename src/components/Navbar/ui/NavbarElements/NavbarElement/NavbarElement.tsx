@@ -1,6 +1,6 @@
-import { HoverCard } from '@mantine/core';
+import { HoverCard, HoverCardProps } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
-import { CSSProperties, HTMLAttributes, ReactNode } from 'react';
+import { CSSProperties, ReactNode } from 'react';
 import { css, styled } from 'styled-components';
 
 interface RootProps {
@@ -12,7 +12,11 @@ const Root = styled.button<RootProps>`
   background: none;
   border: none;
 
-  height: 100%;
+  height: var(--navbar-height);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
   border-radius: 4px;
   padding: ${p => (p.$icon ? '0 16px' : '4px 8px 3px')};
@@ -40,23 +44,24 @@ const StyledDropdown = styled(HoverCard.Dropdown)<{ $width?: CSSProperties['widt
   box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.15);
 `;
 
-interface Props extends HTMLAttributes<HTMLButtonElement> {
+interface Props extends HoverCardProps {
   target: ReactNode;
   icon?: boolean;
   dropdownWidth?: CSSProperties['width'];
 }
 
 export const NavbarElement = (props: Props) => {
-  const { target, children, icon, dropdownWidth, ...rest } = props;
+  const { target, children, icon, dropdownWidth, position = 'bottom-start', ...rest } = props;
 
   const [opened, { open, close }] = useDisclosure(false);
 
   return (
     <HoverCard
+      {...rest}
       offset={4}
       withinPortal
       openDelay={200}
-      position="bottom-start"
+      position={position}
       transitionProps={{
         exitDuration: 100,
       }}
@@ -64,12 +69,12 @@ export const NavbarElement = (props: Props) => {
       onClose={close}
     >
       <HoverCard.Target>
-        <Root {...rest} type="button" $active={opened} $icon={icon}>
+        <Root type="button" $active={opened} $icon={icon}>
           {target}
         </Root>
       </HoverCard.Target>
 
-      <StyledDropdown $width={dropdownWidth}>{children}</StyledDropdown>
+      {children && <StyledDropdown $width={dropdownWidth}>{children}</StyledDropdown>}
     </HoverCard>
   );
 };

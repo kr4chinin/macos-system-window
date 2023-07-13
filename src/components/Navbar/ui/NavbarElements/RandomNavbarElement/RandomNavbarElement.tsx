@@ -1,12 +1,12 @@
 import { faker } from '@faker-js/faker';
-import { ReactComponent as MenuBarIcon } from '../../../../assets/icons/Navbar/menu_bar.svg';
-import { capitalizeFirstLetter } from '../../../../helpers/capitalizeFirstLetter';
-import { createArrayWithRandLength } from '../../../../helpers/createArray';
+import { capitalizeFirstLetter } from '../../../../../helpers/capitalizeFirstLetter';
+import { createArrayWithRandLength } from '../../../../../helpers/createArray';
+import { ReactComponent as MenuBarIcon } from '../../../../../assets/icons/Navbar/menu_bar.svg';
+import { NavbarMenuDelimiter } from '../../NavbarMenuDelimiter/NavbarMenuDelimiter';
+import { NavbarMenuItem } from '../../NavbarMenuItem/NavbarMenuItem';
+import { NavbarMenuList } from '../../NavbarMenuList/NavbarMenuList';
 import { NavbarElement } from '../NavbarElement/NavbarElement';
 import { NavbarElementTitle } from '../NavbarElementTitle/NavbarElementTitle';
-import { NavbarMenuDelimiter } from '../NavbarMenuDelimiter/NavbarMenuDelimiter';
-import { NavbarMenuItem } from '../NavbarMenuItem/NavbarMenuItem';
-import { NavbarMenuList } from '../NavbarMenuList/NavbarMenuList';
 
 interface Props {
   title: string;
