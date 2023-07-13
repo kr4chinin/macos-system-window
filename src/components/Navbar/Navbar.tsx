@@ -1,5 +1,5 @@
 import { styled } from 'styled-components';
-import { Home } from './ui/Home/Home';
+import { HomeNavbarElement } from './ui/HomeNavbarElement/HomeNavbarElement';
 
 const Root = styled.nav`
   height: 24px;
@@ -13,7 +13,7 @@ const Root = styled.nav`
 export const Navbar = () => {
   return (
     <Root>
-      <Home />
+      <HomeNavbarElement />
     </Root>
   );
 };

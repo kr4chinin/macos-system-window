@@ -50,7 +50,7 @@ export const NavbarElement = (props: Props) => {
   const [opened, { open, close }] = useDisclosure(false);
 
   return (
-    <HoverCard position="bottom-start" offset={4} onOpen={open} onClose={close}>
+    <HoverCard withinPortal position="bottom-start" offset={4} onOpen={open} onClose={close}>
       <HoverCard.Target>
         <Root {...rest} type="button" $active={opened} $icon={icon}>
           {target}
