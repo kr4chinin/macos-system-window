@@ -4,8 +4,8 @@ import { ComponentPropsWithoutRef } from 'react';
 import { styled } from 'styled-components';
 import { ReactComponent as CollapseIcon } from '../../../../assets/icons/SystemModal/collapse.svg';
 import { ListOption } from '../../../../models/ListOption';
-import { noUserSelect } from '../../../mixins/noUserSelect';
-import { truncate } from '../../../mixins/truncate';
+import { noUserSelect } from '../../../../mixins/noUserSelect';
+import { truncate } from '../../../../mixins/truncate';
 
 const Root = styled.div`
   display: flex;

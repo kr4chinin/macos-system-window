@@ -1,6 +1,6 @@
 import { ReactNode } from 'react';
 import { styled } from 'styled-components';
-import { truncate } from '../../../mixins/truncate';
+import { truncate } from '../../../../mixins/truncate';
 
 export const Root = styled.li<{ $light?: boolean }>`
   width: 100%;
