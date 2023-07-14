@@ -1,6 +1,6 @@
 import { HoverCard, HoverCardProps } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
-import { CSSProperties, ReactNode } from 'react';
+import { CSSProperties, ReactNode, memo } from 'react';
 import { css, styled } from 'styled-components';
 
 interface RootProps {
@@ -50,7 +50,7 @@ interface Props extends HoverCardProps {
   dropdownWidth?: CSSProperties['width'];
 }
 
-export const NavbarElement = (props: Props) => {
+export const NavbarElement = memo((props: Props) => {
   const { target, children, icon, dropdownWidth, position = 'bottom-start', ...rest } = props;
 
   const [opened, { open, close }] = useDisclosure(false);
@@ -77,4 +77,4 @@ export const NavbarElement = (props: Props) => {
       {children && <StyledDropdown $width={dropdownWidth}>{children}</StyledDropdown>}
     </HoverCard>
   );
-};
+});

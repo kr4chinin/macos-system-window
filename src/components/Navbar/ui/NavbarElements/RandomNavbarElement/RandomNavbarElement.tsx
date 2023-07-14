@@ -1,7 +1,8 @@
 import { faker } from '@faker-js/faker';
+import { memo } from 'react';
+import { ReactComponent as MenuBarIcon } from '../../../../../assets/icons/Navbar/menu_bar.svg';
 import { capitalizeFirstLetter } from '../../../../../helpers/capitalizeFirstLetter';
 import { createArrayWithRandLength } from '../../../../../helpers/createArray';
-import { ReactComponent as MenuBarIcon } from '../../../../../assets/icons/Navbar/menu_bar.svg';
 import { NavbarMenuDelimiter } from '../../NavbarMenuDelimiter/NavbarMenuDelimiter';
 import { NavbarMenuItem } from '../../NavbarMenuItem/NavbarMenuItem';
 import { NavbarMenuList } from '../../NavbarMenuList/NavbarMenuList';
@@ -15,7 +16,7 @@ interface Props {
 const createRandomNoun = (): string =>
   capitalizeFirstLetter(faker.word.noun({ length: { min: 6, max: 32 } }));
 
-export const RandomNavbarElement = (props: Props) => {
+export const RandomNavbarElement = memo((props: Props) => {
   const { title } = props;
 
   return (
@@ -59,4 +60,4 @@ export const RandomNavbarElement = (props: Props) => {
       </NavbarMenuList>
     </NavbarElement>
   );
-};
+});
