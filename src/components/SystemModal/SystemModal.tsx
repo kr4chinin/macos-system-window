@@ -1,10 +1,9 @@
-import { useClickOutside, useDisclosure } from '@mantine/hooks';
 import { useCallback, useLayoutEffect, useRef, useState } from 'react';
 import { ImperativePanelHandle, PanelGroup } from 'react-resizable-panels';
 import { styled } from 'styled-components';
 import { ModalBounds } from '../../models/ModalBounds';
 import { ModalPosition } from '../../models/ModalPosition';
-import { RNDWindow } from '../RNDWindow/RNDWindow';
+import { RndWindow } from '../RndWindow/RndWindow';
 import { extractNumericWidth } from './helpers/extractNumericWidth';
 import { LeftBlock } from './ui/LeftBlock/LeftBlock';
 import { ResizeHandler } from './ui/ResizeHandler/ResizeHandler';
@@ -41,10 +40,8 @@ interface Props {
 export const SystemModal = (props: Props) => {
   const { opened, onClose } = props;
 
-  const [modalFocused, { close, open }] = useDisclosure(false);
   const [modalBounds, setModalBounds] = useState<ModalBounds>(getDefaultModalBounds());
 
-  const modalRef = useClickOutside(close);
   const leftPanelRef = useRef<ImperativePanelHandle>(null);
 
   // we need this indicator because onCollapse cb will be triggered even with imperative api call
@@ -91,24 +88,14 @@ export const SystemModal = (props: Props) => {
   }
 
   return (
-    <RNDWindow
-      ref={modalRef}
-      modalBounds={modalBounds}
-      setModalBounds={setModalBounds}
-      onMouseDown={open}
-    >
+    <RndWindow modalBounds={modalBounds} setModalBounds={setModalBounds}>
       <StyledPanelGroup direction="horizontal" disablePointerEventsDuringResize>
-        <LeftBlock
-          ref={leftPanelRef}
-          modalFocused={modalFocused}
-          onClose={onClose}
-          onCollapse={handleHardCollapse}
-        />
+        <LeftBlock onClose={onClose} onCollapse={handleHardCollapse} />
 
         <ResizeHandler hidden={leftPanelCollapsed} />
 
         <RightBlock />
       </StyledPanelGroup>
-    </RNDWindow>
+    </RndWindow>
   );
 };

@@ -1,5 +1,6 @@
 import { styled } from 'styled-components';
 
+import { useSystemModalContext } from '../../context/useSystemModalContext';
 import { DockDelimiter } from './ui/DockDelimiter/DockDelimiter';
 import { DockElement } from './ui/DockElement/DockElement';
 
@@ -29,10 +30,12 @@ const Content = styled.div`
 `;
 
 export const DockPanel = () => {
+  const { open } = useSystemModalContext();
+
   return (
     <Root>
       <Content>
-        <DockElement tooltipLabel="Finder" src="/img/finder.png" alt="Finder" />
+        <DockElement tooltipLabel="Finder" src="/img/finder.png" alt="Finder" onClick={open} />
         <DockElement tooltipLabel="Books" src="/img/books.png" alt="Books" />
         <DockElement tooltipLabel="Calendar" src="/img/calendar.png" alt="Calendar" />
 

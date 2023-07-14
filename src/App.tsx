@@ -1,8 +1,8 @@
-import { MantineProvider } from '@mantine/core';
-import { SystemModal } from './components/SystemModal/SystemModal';
-import { Navbar } from './components/Navbar/Navbar';
 import { styled } from 'styled-components';
 import { DockPanel } from './components/DockPanel/DockPanel';
+import { Navbar } from './components/Navbar/Navbar';
+import { SystemModal } from './components/SystemModal/SystemModal';
+import { useSystemModalContext } from './context/useSystemModalContext';
 
 const Root = styled.div`
   height: 100dvh;
@@ -16,18 +16,16 @@ const Content = styled.main`
 `;
 
 const App = () => {
+  const { opened, close } = useSystemModalContext();
+
   return (
-    <MantineProvider withNormalizeCSS>
-      <Root>
-        <Navbar />
+    <Root>
+      <Navbar />
 
-        <Content>
-          <SystemModal opened onClose={() => {}} />
-        </Content>
+      <Content>{opened && <SystemModal opened={opened} onClose={close} />}</Content>
 
-        <DockPanel />
-      </Root>
-    </MantineProvider>
+      <DockPanel />
+    </Root>
   );
 };
 
