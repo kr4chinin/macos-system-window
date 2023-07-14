@@ -1,13 +1,21 @@
 import { styled } from 'styled-components';
 
-import { DockElement } from './ui/DockElement/DockElement';
 import { DockDelimiter } from './ui/DockDelimiter/DockDelimiter';
+import { DockElement } from './ui/DockElement/DockElement';
 
 const Root = styled.div`
   position: fixed;
-  left: 50%;
   bottom: 4px;
 
+  width: 100%;
+  height: fit-content;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
+const Content = styled.div`
   display: flex;
   align-items: center;
   gap: 3px;
@@ -23,13 +31,15 @@ const Root = styled.div`
 export const DockPanel = () => {
   return (
     <Root>
-      <DockElement tooltipLabel="Finder" src="/img/finder.png" alt="Finder" />
-      <DockElement tooltipLabel="Books" src="/img/books.png" alt="Books" />
-      <DockElement tooltipLabel="Calendar" src="/img/calendar.png" alt="Calendar" />
+      <Content>
+        <DockElement tooltipLabel="Finder" src="/img/finder.png" alt="Finder" />
+        <DockElement tooltipLabel="Books" src="/img/books.png" alt="Books" />
+        <DockElement tooltipLabel="Calendar" src="/img/calendar.png" alt="Calendar" />
 
-      <DockDelimiter />
+        <DockDelimiter />
 
-      <DockElement tooltipLabel="Trash" size="small" src="/img/trash.png" alt="Trash" />
+        <DockElement tooltipLabel="Trash" size="small" src="/img/trash.png" alt="Trash" />
+      </Content>
     </Root>
   );
 };
