@@ -24,7 +24,7 @@ const Content = styled.div`
 
   border-radius: 24px;
   border: 0.5px solid rgba(255, 255, 255, 0.2);
-  background: rgba(255, 255, 255, 0.2);
+  background: rgba(0, 0, 0, 0.2);
   backdrop-filter: blur(25px);
 `;
 

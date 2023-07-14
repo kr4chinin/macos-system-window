@@ -32,7 +32,7 @@ export const DockElement = (props: Props) => {
   const imageSize = imageSizes[size];
 
   return (
-    <Tooltip label={tooltipLabel} withArrow>
+    <Tooltip withArrow withinPortal arrowSize={8} offset={14} label={tooltipLabel}>
       <Root>
         <img {...rest} alt={alt} width={imageSize} height={imageSize} />
       </Root>

@@ -6,5 +6,5 @@ export const DockDelimiter = styled.hr`
   height: 64px;
 
   margin: 0 13px;
-  border-left: 1px solid rgba(0, 0, 0, 0.3);
+  border-left: 1px solid rgba(255, 255, 255, 0.3);
 `;
