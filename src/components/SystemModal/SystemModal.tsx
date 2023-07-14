@@ -1,3 +1,4 @@
+import { useDidUpdate, useDisclosure } from '@mantine/hooks';
 import { useCallback, useLayoutEffect, useRef, useState } from 'react';
 import { ImperativePanelHandle, PanelGroup } from 'react-resizable-panels';
 import { styled } from 'styled-components';
@@ -40,6 +41,9 @@ interface Props {
 export const SystemModal = (props: Props) => {
   const { opened, onClose } = props;
 
+  const [isFullPageMode, { toggle: toggleFullPageMode }] = useDisclosure(false);
+
+  const [previousModalBounds, setPreviousModalBounds] = useState<ModalBounds | null>(null);
   const [modalBounds, setModalBounds] = useState<ModalBounds>(getDefaultModalBounds());
 
   const leftPanelRef = useRef<ImperativePanelHandle>(null);
@@ -57,6 +61,29 @@ export const SystemModal = (props: Props) => {
 
     setLeftPanelCollapsed(collapsed);
   }, []);
+
+  useDidUpdate(() => {
+    if (isFullPageMode) {
+      setPreviousModalBounds(modalBounds);
+
+      setModalBounds({
+        size: {
+          width: window.innerWidth,
+          height: window.innerHeight - 136,
+        },
+        position: {
+          x: 0,
+          y: 8,
+        },
+      });
+    } else {
+      if (previousModalBounds) {
+        setModalBounds(previousModalBounds);
+      }
+
+      setPreviousModalBounds(null);
+    }
+  }, [isFullPageMode]);
 
   useLayoutEffect(() => {
     if (!leftPanelRef.current || leftPanelHardCollapsed.current) {
@@ -90,7 +117,11 @@ export const SystemModal = (props: Props) => {
   return (
     <RndWindow modalBounds={modalBounds} setModalBounds={setModalBounds}>
       <StyledPanelGroup direction="horizontal" disablePointerEventsDuringResize>
-        <LeftBlock onClose={onClose} onCollapse={handleHardCollapse} />
+        <LeftBlock
+          onClose={onClose}
+          onCollapse={handleHardCollapse}
+          toggleFullPage={toggleFullPageMode}
+        />
 
         <ResizeHandler hidden={leftPanelCollapsed} />
 

@@ -35,17 +35,18 @@ const TrafficLights = styled.div`
 interface Props {
   contentScrolled: boolean;
   onClose: () => void;
+  toggleFullPage: () => void;
 }
 
 export const LeftBlockHeader = (props: Props) => {
-  const { contentScrolled, onClose } = props;
+  const { contentScrolled, onClose, toggleFullPage } = props;
 
   return (
     <Root className={SystemClasses.RND_WINDOW_DRAGGABLE} $hasBorderBottom={contentScrolled}>
       <TrafficLights>
         <TrafficLightButton variant="close" onClick={onClose} />
         <TrafficLightButton variant="minimize" />
-        <TrafficLightButton variant="expand" />
+        <TrafficLightButton variant="expand" onClick={toggleFullPage} />
       </TrafficLights>
     </Root>
   );

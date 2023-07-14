@@ -19,10 +19,11 @@ const Root = styled(Panel)`
 interface Props {
   onClose: () => void;
   onCollapse: (collapsed: boolean) => void;
+  toggleFullPage: () => void;
 }
 
 export const LeftBlock = (props: Props) => {
-  const { onClose, onCollapse } = props;
+  const { onClose, onCollapse, toggleFullPage } = props;
 
   const [scrollPosition, onScrollPositionChange] = useState<ScrollPosition>({ x: 0, y: 0 });
 
@@ -35,7 +36,11 @@ export const LeftBlock = (props: Props) => {
       collapsedSize={0}
       onCollapse={onCollapse}
     >
-      <LeftBlockHeader contentScrolled={scrollPosition.y > 0} onClose={onClose} />
+      <LeftBlockHeader
+        contentScrolled={scrollPosition.y > 0}
+        onClose={onClose}
+        toggleFullPage={toggleFullPage}
+      />
       <LeftBlockContent onScrollPositionChange={onScrollPositionChange} />
     </Root>
   );
