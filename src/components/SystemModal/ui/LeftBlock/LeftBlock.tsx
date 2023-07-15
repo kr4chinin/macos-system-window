@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import { Panel } from 'react-resizable-panels';
+import { forwardRef, useState } from 'react';
+import { ImperativePanelHandle, Panel } from 'react-resizable-panels';
 import { styled } from 'styled-components';
 import { ScrollPosition } from '../../../../models/ScrollPosition';
 import { LeftBlockContent } from '../LeftBlockContent/LeftBlockContent';
@@ -22,13 +22,14 @@ interface Props {
   toggleFullPage: () => void;
 }
 
-export const LeftBlock = (props: Props) => {
+export const LeftBlock = forwardRef<ImperativePanelHandle, Props>((props, ref) => {
   const { onClose, onCollapse, toggleFullPage } = props;
 
   const [scrollPosition, onScrollPositionChange] = useState<ScrollPosition>({ x: 0, y: 0 });
 
   return (
     <Root
+      ref={ref}
       collapsible
       minSize={20}
       maxSize={40}
@@ -44,4 +45,4 @@ export const LeftBlock = (props: Props) => {
       <LeftBlockContent onScrollPositionChange={onScrollPositionChange} />
     </Root>
   );
-};
+});

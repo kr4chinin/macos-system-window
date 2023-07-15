@@ -44,7 +44,7 @@ export const SystemModal = (props: Props) => {
   const [isFullPageMode, { toggle: toggleFullPageMode }] = useDisclosure(false);
 
   const [previousModalBounds, setPreviousModalBounds] = useState<ModalBounds | null>(null);
-  const [modalBounds, setModalBounds] = useState<ModalBounds>(getDefaultModalBounds());
+  const [modalBounds, setModalBounds] = useState<ModalBounds>(() => getDefaultModalBounds());
 
   const leftPanelRef = useRef<ImperativePanelHandle>(null);
 
@@ -118,6 +118,7 @@ export const SystemModal = (props: Props) => {
     <RndWindow modalBounds={modalBounds} setModalBounds={setModalBounds}>
       <StyledPanelGroup direction="horizontal" disablePointerEventsDuringResize>
         <LeftBlock
+          ref={leftPanelRef}
           onClose={onClose}
           onCollapse={handleHardCollapse}
           toggleFullPage={toggleFullPageMode}
