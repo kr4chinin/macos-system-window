@@ -2,10 +2,11 @@ import { styled } from 'styled-components';
 import { SystemClasses } from '../../../../models/SystemClasses';
 import { NavigationButton } from '../NavigationButton/NavigationButton';
 import { SearchButton } from '../SearchButton/SearchButton';
+import { useSystemModalContext } from '../../../../context/useSystemModalContext';
 
 const Root = styled.div`
   width: 100%;
-  height: var(--header-height);
+  height: var(--modal-header-height);
 
   display: flex;
   align-items: center;
@@ -34,6 +35,8 @@ const SearchButtonWrapper = styled.div`
 `;
 
 export const RightBlockHeader = () => {
+  const { currentDirectory } = useSystemModalContext();
+
   return (
     <Root className={SystemClasses.RND_WINDOW_DRAGGABLE}>
       <NavigationButtonsWrapper>
@@ -41,7 +44,7 @@ export const RightBlockHeader = () => {
         <NavigationButton variant="forward" />
       </NavigationButtonsWrapper>
 
-      <DirectoryName>Directory</DirectoryName>
+      <DirectoryName>{currentDirectory?.label}</DirectoryName>
 
       <SearchButtonWrapper>
         <SearchButton />

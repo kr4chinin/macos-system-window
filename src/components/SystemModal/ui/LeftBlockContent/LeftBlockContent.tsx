@@ -1,4 +1,6 @@
+import { useEffect } from 'react';
 import { styled } from 'styled-components';
+import { useSystemModalContext } from '../../../../context/useSystemModalContext';
 import { ScrollPosition } from '../../../../models/ScrollPosition';
 import { SystemScrollArea } from '../../../SystemScrollArea/SystemScrollArea';
 import { makeFavoritesList } from '../../helpers/makeFavoritesList';
@@ -26,6 +28,12 @@ interface Props {
 
 export const LeftBlockContent = (props: Props) => {
   const { onScrollPositionChange } = props;
+
+  const { setCurrentDirectory } = useSystemModalContext();
+
+  useEffect(() => {
+    setCurrentDirectory(favoritesList[0]);
+  }, [setCurrentDirectory]);
 
   return (
     <SystemScrollArea onScrollPositionChange={onScrollPositionChange}>

@@ -1,11 +1,12 @@
 import { Collapse } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import { ComponentPropsWithoutRef } from 'react';
-import { styled } from 'styled-components';
+import { css, styled } from 'styled-components';
 import { ReactComponent as CollapseIcon } from '../../../../assets/icons/SystemModal/collapse.svg';
-import { ListOption } from '../../../../models/ListOption';
+import { useSystemModalContext } from '../../../../context/useSystemModalContext';
 import { noUserSelect } from '../../../../mixins/noUserSelect';
 import { truncate } from '../../../../mixins/truncate';
+import { ListOption } from '../../../../models/ListOption';
 
 const Root = styled.div`
   display: flex;
@@ -64,7 +65,7 @@ const List = styled.ul`
   flex-direction: column;
 `;
 
-const Item = styled.li`
+const Item = styled.li<{ $active: boolean }>`
   display: flex;
   align-items: center;
   gap: 8px;
@@ -74,6 +75,13 @@ const Item = styled.li`
   letter-spacing: 0.08px;
 
   padding: 6px;
+
+  ${p =>
+    p.$active &&
+    css`
+      border-radius: 4px;
+      background-color: rgba(255, 255, 255, 0.15);
+    `}
 `;
 
 const ItemLabel = styled.span`
@@ -101,6 +109,8 @@ interface Props extends OmittedCollapseProps {
 export const DirectoryCollapsibleList = (props: Props) => {
   const { title, listOptions, defaultOpened = true, ...rest } = props;
 
+  const { currentDirectory, setCurrentDirectory } = useSystemModalContext();
+
   const [opened, { toggle }] = useDisclosure(defaultOpened);
 
   return (
@@ -116,7 +126,11 @@ export const DirectoryCollapsibleList = (props: Props) => {
       <Collapse {...rest} in={opened}>
         <List>
           {listOptions.map(o => (
-            <Item key={o.value}>
+            <Item
+              key={o.value}
+              $active={o.value === currentDirectory?.value}
+              onClick={() => setCurrentDirectory(o)}
+            >
               {o.icon && <IconWrapper>{o.icon}</IconWrapper>}
 
               <ItemLabel>{o.label}</ItemLabel>
