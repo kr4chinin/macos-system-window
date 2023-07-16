@@ -9,10 +9,17 @@ const StyledPanel = styled(Panel)`
   background-color: var(--modal-background);
 `;
 
-export const RightBlock = () => {
+interface Props {
+  leftPanelCollapsed: boolean;
+  toggleFullPage: () => void;
+}
+
+export const RightBlock = (props: Props) => {
+  const { leftPanelCollapsed, toggleFullPage } = props;
+
   return (
     <StyledPanel defaultSize={70} maxSize={100}>
-      <RightBlockHeader />
+      <RightBlockHeader leftPanelCollapsed={leftPanelCollapsed} toggleFullPage={toggleFullPage} />
       <RightBlockContent />
     </StyledPanel>
   );

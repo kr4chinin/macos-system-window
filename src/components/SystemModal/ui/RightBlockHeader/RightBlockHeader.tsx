@@ -3,6 +3,7 @@ import { useSystemModalContext } from '../../../../context/useSystemModalContext
 import { SystemClasses } from '../../../../models/SystemClasses';
 import { NavigationButton } from '../NavigationButton/NavigationButton';
 import { SearchButton } from '../SearchButton/SearchButton';
+import { TrafficsLights } from '../TrafficLights/TrafficsLights';
 
 const Root = styled.div`
   width: 100%;
@@ -34,14 +35,24 @@ const SearchButtonWrapper = styled.div`
   margin-left: auto;
 `;
 
-export const RightBlockHeader = () => {
+interface Props {
+  leftPanelCollapsed: boolean;
+  toggleFullPage: () => void;
+}
+
+export const RightBlockHeader = (props: Props) => {
+  const { leftPanelCollapsed, toggleFullPage } = props;
+
   const { currentDirectory } = useSystemModalContext();
 
-  const { goOneDirectoryBack, goOneDirectoryForward, navigationState } = useSystemModalContext();
+  const { navigationState, goOneDirectoryBack, goOneDirectoryForward, close } =
+    useSystemModalContext();
   const { canGoBack, canGoForward } = navigationState;
 
   return (
     <Root className={SystemClasses.RND_WINDOW_DRAGGABLE}>
+      {leftPanelCollapsed && <TrafficsLights onClose={close} toggleFullPage={toggleFullPage} />}
+
       <NavigationButtonsWrapper>
         <NavigationButton disabled={!canGoBack} variant="back" onClick={goOneDirectoryBack} />
         <NavigationButton

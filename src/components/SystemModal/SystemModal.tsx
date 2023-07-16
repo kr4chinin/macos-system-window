@@ -126,7 +126,7 @@ export const SystemModal = (props: Props) => {
 
         <ResizeHandler hidden={leftPanelCollapsed} />
 
-        <RightBlock />
+        <RightBlock leftPanelCollapsed={leftPanelCollapsed} toggleFullPage={toggleFullPageMode} />
       </StyledPanelGroup>
     </RndWindow>
   );
