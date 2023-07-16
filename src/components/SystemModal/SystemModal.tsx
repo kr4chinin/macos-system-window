@@ -3,31 +3,12 @@ import { useCallback, useLayoutEffect, useRef, useState } from 'react';
 import { ImperativePanelHandle, PanelGroup } from 'react-resizable-panels';
 import { styled } from 'styled-components';
 import { ModalBounds } from '../../models/ModalBounds';
-import { ModalPosition } from '../../models/ModalPosition';
 import { RndWindow } from '../RndWindow/RndWindow';
 import { extractNumericWidth } from './helpers/extractNumericWidth';
 import { LeftBlock } from './ui/LeftBlock/LeftBlock';
 import { ResizeHandler } from './ui/ResizeHandler/ResizeHandler';
 import { RightBlock } from './ui/RightBlock/RightBlock';
-
-const windowInnerHeight = window.innerHeight;
-
-const defaultModalSize = {
-  width: 920,
-  height: 610,
-};
-
-const defaultModalPosition: ModalPosition = {
-  x: (window.innerWidth - defaultModalSize.width) / 2,
-  y: (windowInnerHeight - defaultModalSize.height) / 3,
-};
-
-export const getDefaultModalBounds = (): ModalBounds => {
-  return {
-    size: defaultModalSize,
-    position: defaultModalPosition,
-  };
-};
+import { getDefaultModalBounds } from './helpers/getDefaultModalBounds';
 
 const StyledPanelGroup = styled(PanelGroup)`
   flex: 1;
