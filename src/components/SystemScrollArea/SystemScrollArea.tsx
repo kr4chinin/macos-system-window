@@ -1,6 +1,6 @@
 import { ScrollArea, ScrollAreaProps } from '@mantine/core';
 
-const SystemScrollArea = (props: ScrollAreaProps) => {
+export const SystemScrollArea = (props: ScrollAreaProps) => {
   const { children, ...rest } = props;
 
   return (
@@ -21,5 +21,3 @@ const SystemScrollArea = (props: ScrollAreaProps) => {
     </ScrollArea>
   );
 };
-
-export { SystemScrollArea };
