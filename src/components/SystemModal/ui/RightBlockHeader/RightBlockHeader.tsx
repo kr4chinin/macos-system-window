@@ -1,8 +1,8 @@
 import { styled } from 'styled-components';
+import { useSystemModalContext } from '../../../../context/useSystemModalContext';
 import { SystemClasses } from '../../../../models/SystemClasses';
 import { NavigationButton } from '../NavigationButton/NavigationButton';
 import { SearchButton } from '../SearchButton/SearchButton';
-import { useSystemModalContext } from '../../../../context/useSystemModalContext';
 
 const Root = styled.div`
   width: 100%;
@@ -37,11 +37,18 @@ const SearchButtonWrapper = styled.div`
 export const RightBlockHeader = () => {
   const { currentDirectory } = useSystemModalContext();
 
+  const { goOneDirectoryBack, goOneDirectoryForward, navigationState } = useSystemModalContext();
+  const { canGoBack, canGoForward } = navigationState;
+
   return (
     <Root className={SystemClasses.RND_WINDOW_DRAGGABLE}>
       <NavigationButtonsWrapper>
-        <NavigationButton variant="back" />
-        <NavigationButton variant="forward" />
+        <NavigationButton disabled={!canGoBack} variant="back" onClick={goOneDirectoryBack} />
+        <NavigationButton
+          disabled={!canGoForward}
+          variant="forward"
+          onClick={goOneDirectoryForward}
+        />
       </NavigationButtonsWrapper>
 
       <DirectoryName>{currentDirectory?.label}</DirectoryName>
