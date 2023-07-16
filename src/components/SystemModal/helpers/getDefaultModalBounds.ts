@@ -4,7 +4,7 @@ import { ModalPosition } from '../../../models/ModalPosition';
 const windowInnerHeight = window.innerHeight;
 
 const defaultModalSize = {
-  width: 920,
+  width: 850,
   height: 610,
 };
 
