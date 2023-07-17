@@ -10,10 +10,10 @@ The **main** **objective** of this project was to meticulously reverse-engineer 
 
 Highlighted features of this project include:
 
-* A **draggable** and **resizeable** system window, which offers a pseudo-fullscreen mode, the ability to resize and hide the sidebar (automatically hidden when the modal reaches a certain minimal size, and restored upon returning to the normal size);
-* Fold/unfold **directories**, choose dirrent directories;
+* A **draggable** and **resizable** system window, which offers a pseudo full-screen mode, the ability to resize and hide the sidebar (automatically hidden when the modal reaches a certain minimal size, and restored upon returning to the normal size);
+* Fold/unfold **directories**, choose different directories;
 
-![Hide navbar on resize, fold/unfold dirs functionaliy](https://github.com/kr4chinin/apple-system-window/assets/103210607/ddff3ba2-da4a-4ecf-93b4-c0db9c30da86)
+![Hide navbar on resize, fold/unfold dirs functionality](https://github.com/kr4chinin/apple-system-window/assets/103210607/ddff3ba2-da4a-4ecf-93b4-c0db9c30da86)
 
 * Functional navbar with **dynamic** dropdown **content** options;
   
