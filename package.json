@@ -1,7 +1,7 @@
 {
-  "name": "apple-system-window",
+  "name": "macos-system-window",
   "private": false,
-  "version": "0.0.0",
+  "version": "1.0.0",
   "type": "module",
   "scripts": {
     "start": "vite",
