@@ -28,7 +28,8 @@ Highlighted features of this project include:
 * Mantine;
 * styled-components;
 * react-rnd;
-* react-resizable-panels.
+* react-resizable-panels;
+* faker.js.
 
 <img width="1728" alt="Another home screen view with different modal size" src="https://github.com/kr4chinin/apple-system-window/assets/103210607/94728d5a-760c-41de-ab3a-8ef7d4147944">
 
