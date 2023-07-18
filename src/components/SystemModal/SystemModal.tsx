@@ -3,7 +3,7 @@ import { useCallback, useLayoutEffect, useRef, useState } from 'react';
 import { ImperativePanelHandle, PanelGroup } from 'react-resizable-panels';
 import { styled } from 'styled-components';
 import { ModalBounds } from '../../models/ModalBounds';
-import { RndWindow } from '../RndWindow/RndWindow';
+import { RNDWindow } from '../RNDWindow/RNDWindow';
 import { extractNumericWidth } from './helpers/extractNumericWidth';
 import { LeftBlock } from './ui/LeftBlock/LeftBlock';
 import { ResizeHandler } from './ui/ResizeHandler/ResizeHandler';
@@ -96,7 +96,7 @@ export const SystemModal = (props: Props) => {
   }
 
   return (
-    <RndWindow modalBounds={modalBounds} setModalBounds={setModalBounds}>
+    <RNDWindow modalBounds={modalBounds} setModalBounds={setModalBounds}>
       <StyledPanelGroup direction="horizontal" disablePointerEventsDuringResize>
         <LeftBlock
           ref={leftPanelRef}
@@ -109,6 +109,6 @@ export const SystemModal = (props: Props) => {
 
         <RightBlock leftPanelCollapsed={leftPanelCollapsed} toggleFullPage={toggleFullPageMode} />
       </StyledPanelGroup>
-    </RndWindow>
+    </RNDWindow>
   );
 };
