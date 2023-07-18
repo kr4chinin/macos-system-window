@@ -2,6 +2,8 @@
 
 A simplified recreation of **macOS's** dark-themed **home screen**, featuring functional UI components and a special emphasis on the **system window**. This window is fully interactive, allowing users to effortlessly drag, resize, and utilize various other features typically found in native macOS window components. [Vercel Deployment](https://macos-system-window.vercel.app).
 
+🚨 The background image has a really **high resolution**, which might result in a slight delay while the page fully loads. Please allow a few seconds for optimal display.
+
 ![Home screen](https://github.com/kr4chinin/macos-system-window/assets/103210607/be8eb8ac-7a35-45e1-bbb4-d1cb0f80e616)
 
 ## Introduction
