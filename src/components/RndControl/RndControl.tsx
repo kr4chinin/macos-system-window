@@ -41,7 +41,7 @@ export const modalMinSizes = {
   height: 400,
 };
 
-export const RNDWindow = forwardRef<HTMLDivElement, Props>((props, ref) => {
+export const RndControl = forwardRef<HTMLDivElement, Props>((props, ref) => {
   const { modalBounds, children, setModalBounds, ...rest } = props;
 
   const handleDragStop: RndDragCallback = (_, d) => {

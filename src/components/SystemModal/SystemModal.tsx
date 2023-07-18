@@ -3,12 +3,12 @@ import { useCallback, useLayoutEffect, useRef, useState } from 'react';
 import { ImperativePanelHandle, PanelGroup } from 'react-resizable-panels';
 import { styled } from 'styled-components';
 import { ModalBounds } from '../../models/ModalBounds';
-import { RNDWindow } from '../RNDWindow/RNDWindow';
+import { RndControl } from '../RndControl/RndControl';
 import { extractNumericWidth } from './helpers/extractNumericWidth';
+import { getDefaultModalBounds } from './helpers/getDefaultModalBounds';
 import { LeftBlock } from './ui/LeftBlock/LeftBlock';
 import { ResizeHandler } from './ui/ResizeHandler/ResizeHandler';
 import { RightBlock } from './ui/RightBlock/RightBlock';
-import { getDefaultModalBounds } from './helpers/getDefaultModalBounds';
 
 const StyledPanelGroup = styled(PanelGroup)`
   flex: 1;
@@ -96,7 +96,7 @@ export const SystemModal = (props: Props) => {
   }
 
   return (
-    <RNDWindow modalBounds={modalBounds} setModalBounds={setModalBounds}>
+    <RndControl modalBounds={modalBounds} setModalBounds={setModalBounds}>
       <StyledPanelGroup direction="horizontal" disablePointerEventsDuringResize>
         <LeftBlock
           ref={leftPanelRef}
@@ -109,6 +109,6 @@ export const SystemModal = (props: Props) => {
 
         <RightBlock leftPanelCollapsed={leftPanelCollapsed} toggleFullPage={toggleFullPageMode} />
       </StyledPanelGroup>
-    </RNDWindow>
+    </RndControl>
   );
 };
