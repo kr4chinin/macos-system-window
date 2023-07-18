@@ -4,9 +4,18 @@ A simplified recreation of **macOS's** dark-themed **home screen**, featuring fu
 
 🚨 The background image has a really **high resolution**, which might result in a slight delay while the page fully loads. Please allow a few seconds for optimal display.
 
+* 🔗 Vercel deployment – [macOS System Window](https://macos-system-window.vercel.app)
+* 🏗️ CodeSandbox – [macOS System Window Sandbox](https://codesandbox.io/p/sandbox/github/kr4chinin/macos-system-window/tree/main)
+
 ![Home screen](https://github.com/kr4chinin/macos-system-window/assets/103210607/be8eb8ac-7a35-45e1-bbb4-d1cb0f80e616)
 
 ## Introduction
+
+Run the application 
+```
+npm install
+npm start
+```
 
 The **main** **objective** of this project was to meticulously reverse-engineer one of macOS's most renowned interfaces, all without relying on any pre-existing templates. My aim was to preserve the core functionality of the user interface as faithfully as possible but simplify it where necessary.
 
